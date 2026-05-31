@@ -94,16 +94,42 @@
 
   <!-- ВКЛАДКА CMS -->
   <div class="tab-panel" id="tab-cms">
-    <div style="display:flex; gap:10px; margin-bottom:15px">
-      <select id="cms-sec" style="width:150px; padding:8px"><option value="">Все разделы</option><option value="hero">Главная</option><option value="pricing">Тарифы</option><option value="contacts">Контакты</option><option value="seo">SEO</option></select>
-      <button class="btn btn-primary" onclick="loadCMS()">🔄 Загрузить контент</button>      <span id="cms-status" style="margin-left:auto; color:#64748b; font-size:0.9rem; align-self:center"></span>
-    </div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th>Ключ</th><th>Раздел</th><th>Значение</th><th>Сохранить</th></tr></thead>
-        <tbody id="cms-body"><tr><td colspan="4" style="text-align:center">Нажмите "Загрузить контент"</td></tr></tbody>
-      </table>
-    </div>
+  <div style="display:flex; gap:10px; margin-bottom:15px; flex-wrap:wrap">
+    <select id="cms-sec" style="width:150px; padding:8px">
+      <option value="">Все разделы</option>
+      <option value="hero">🏠 Главная</option>
+      <option value="pricing">💰 Тарифы</option>
+      <option value="contacts">📞 Контакты</option>
+      <option value="seo">🔍 SEO</option>
+      <option value="footer">🦶 Футер</option>
+      <option value="settings">⚙️ Настройки</option>
+    </select>
+    <button class="btn btn-primary" onclick="loadCMS()">🔄 Загрузить</button>
+    <button class="btn btn-outline" onclick="resetCMS()" style="color:var(--danger); border-color:var(--danger)">↺ Сбросить к дефолту</button>
+    <span id="cms-status" style="margin-left:auto; color:#64748b; font-size:0.9rem; align-self:center"></span>
+  </div>
+  
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th style="width:25%">Ключ</th>
+          <th style="width:15%">Раздел</th>
+          <th style="width:35%">Значение</th>
+          <th style="width:25%">Описание</th>
+          <th style="width:5%">💾</th>
+        </tr>
+      </thead>
+      <tbody id="cms-body">
+        <tr><td colspan="5" style="text-align:center">Нажмите "Загрузить"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div style="margin-top:15px; padding:12px; background:#f8fafc; border-radius:8px; font-size:0.9rem; color:#64748b">
+    <strong>💡 Подсказка:</strong> 
+    Числовые поля (цены, проценты) указывайте без пробелов и символов: <code>70000</code>, не <code>70 000 ₽</code>. 
+    Символы валюты и пробелы добавляются автоматически на сайте.
   </div>
 </div>
 
