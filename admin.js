@@ -173,29 +173,131 @@ async function loadEnts() {
 }
 
 // === CMS ===
+// === CMS: Загрузка с описанием ===
 async function loadCMS() {
   const st = document.getElementById('cms-status');
   st.textContent = '⏳ Загрузка...';
+  
   try {
-    let cms = CONFIG.IS_PREVIEW ? { hero_title:'Демо заголовок', price_min:'35000', phone:'+7 (999) 000-00-00' } : await apiGet('get_cms');
-    cmsData = Object.entries(cms).map(([k, v]) => ({ key:k, value:String(v), section:k.includes('price')?'pricing':k.includes('hero')?'hero':'seo' }));
-    renderCMS(); st.textContent = `✅ Загружено: ${cmsData.length}`;
-  } catch (e) { st.textContent = `❌ ${e.message}`; }
+    let cmsList = [];
+    
+    if (CONFIG.IS_PREVIEW) {
+      // Демо-данные с описаниями
+      await new Promise(r => setTimeout(r, 400));
+      cmsList = [
+        {key:'hero_title', section:'hero', value:'Домофон для вашего подъезда', type:'text', description:'Главный заголовок на первом экране'},
+        {key:'price_min', section:'hero', value:'35000', type:'number', description:'Минимальная цена (отображается с "₽")'},
+        {key:'phone', section:'contacts', value:'+7 (999) 123-45-67', type:'text', description:'Телефон для связи'},
+        {key:'base_price', section:'pricing', value:'70000', type:'number', description:'Полная стоимость без подписки'},
+        {key:'meta_desc', section:'seo', value:'Коллективная установка домофонов.', type:'text', description:'SEO: описание страницы'}
+      ];
+    } else {
+      // Загрузка из таблицы (ожидаем колонки: key, section, value, type, description)
+      const res = await apiGet('get_cms');
+      cmsList = Object.entries(res).map(([k, v]) => ({
+        key: k,
+        value: String(v.value || v), // Поддержка старого и нового формата
+        section: v.section || (k.includes('price')?'pricing':k.includes('hero')?'hero':'general'),
+        type: v.type || 'text',
+        description: v.description || 'Без описания'
+      }));
+    }
+    
+    cmsData = cmsList;
+    renderCMS();
+    st.textContent = `✅ Загружено: ${cmsData.length} параметров`;
+    
+  } catch (e) {
+    st.textContent = `❌ ${e.message}`;
+  }
 }
 
+// === CMS: Рендер с описаниями и типами ===
 function renderCMS() {
   const sec = document.getElementById('cms-sec').value;
   const filtered = sec ? cmsData.filter(d => d.section === sec) : cmsData;
-  document.getElementById('cms-body').innerHTML = filtered.map(d =>
-    `<tr><td><code>${d.key}</code></td><td><span class="status s-new">${d.section}</span></td><td><input type="text" value="${d.value.replace(/"/g,'&quot;')}" data-k="${d.key}"></td><td><button class="btn-sm" onclick="saveCMS('${d.key}')">💾</button></td></tr>`
-  ).join('');
+  
+  document.getElementById('cms-body').innerHTML = filtered.map(d => {
+    // Определяем тип input в зависимости от типа значения
+    const inputType = d.type === 'number' ? 'number' : 'text';
+    const stepAttr = d.type === 'number' ? 'step="100"' : '';
+    const placeholder = d.type === 'number' ? 'только цифры' : '';
+    
+    return `
+      <tr>
+        <td><code style="font-size:0.85rem">${d.key}</code></td>
+        <td><span class="status s-new">${d.section}</span></td>
+        <td>
+          <input type="${inputType}" ${stepAttr} placeholder="${placeholder}"
+                 value="${String(d.value).replace(/"/g, '&quot;')}" 
+                 class="cms-in" data-k="${d.key}"
+                 style="width:100%; padding:6px 8px; border:1px solid #cbd5e1; border-radius:4px">
+        </td>
+        <td style="color:#64748b; font-size:0.85rem">${d.description || '—'}</td>
+        <td><button class="btn-sm" onclick="saveCMS('${d.key}')">💾</button></td>
+      </tr>
+    `;
+  }).join('');
 }
-document.getElementById('cms-sec').addEventListener('change', renderCMS);
 
+// === CMS: Сброс к дефолтным значениям ===
+async function resetCMS() {
+  if (!confirm('⚠️ Сбросить все значения к дефолтным? Это перезапишет текущие настройки.')) return;
+  
+  try {
+    const defaults = {
+      hero_title: 'Домофон для вашего подъезда',
+      price_min: '35000',
+      phone: '+7 (999) 123-45-67',
+      base_price: '70000',
+      sub_price: '35000',
+      monthly_fee: '200',
+      meta_desc: 'Коллективная установка домофонов. Договор при 50% согласий.'
+    };
+    
+    for (const [key, value] of Object.entries(defaults)) {
+      await apiPost({ action: 'update_cms', key, value, section: key.includes('price')?'pricing':'hero' });
+    }
+    
+    document.getElementById('cms-status').textContent = '✅ Сброшено к дефолту';
+    loadCMS(); // Перезагрузить список
+  } catch (e) {
+    alert('❌ Ошибка сброса: ' + e.message);
+  }
+}
+
+// === CMS: Сохранение с валидацией чисел ===
 async function saveCMS(key) {
-  const val = document.querySelector(`[data-k="${key}"]`).value;
-  try {    await apiPost({ action:'update_cms', key, value:val });
-    document.getElementById('cms-status').textContent = '✅ Сохранено';
-    setTimeout(()=>document.getElementById('cms-status').textContent='',2000);
-  } catch (e) { alert('❌ '+e.message); }
+  const input = document.querySelector(`[data-k="${key}"]`);
+  let val = input.value.trim();
+  
+  // Валидация числовых полей
+  const numericKeys = ['price_min', 'base_price', 'sub_price', 'monthly_fee', 'min_agree_percent'];
+  if (numericKeys.includes(key)) {
+    const num = parseInt(val);
+    if (isNaN(num) || num < 0) {
+      input.style.borderColor = 'var(--danger)';
+      alert('❌ Введите корректное число');
+      return;
+    }
+    val = String(num); // Сохраняем как строку, но без лишних символов
+    input.style.borderColor = '';
+  }
+  
+  try {
+    const section = key.includes('price') ? 'pricing' : key.includes('hero') ? 'hero' : key.includes('phone') ? 'contacts' : 'seo';
+    await apiPost({ action: 'update_cms', key, value: val, section });
+    
+    input.style.borderColor = 'var(--success)';
+    document.getElementById('cms-status').textContent = `✅ ${key} сохранён`;
+    
+    setTimeout(() => {
+      input.style.borderColor = '';
+      document.getElementById('cms-status').textContent = '';
+    }, 2000);
+    
+  } catch (e) {
+    input.style.borderColor = 'var(--danger)';
+    alert('❌ Ошибка: ' + e.message);
+  }
 }
