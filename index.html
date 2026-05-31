@@ -1,12 +1,4 @@
-<!DOCTYPE html><html lang="ru"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ТДТК.РФ — Твой Дом — Твоя Крепость</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"></head>
-  <meta name="description" content="Коллективная установка домофонов.">
-  <meta property="og:title" content="ТДТК — Твой Дом — Твоя Крепость">
-  <body>
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title data-cms="meta_title">ТДТК.РФ — Твой Дом — Твоя Крепость</title><meta name="description" content="Коллективная установка домофонов. Договор при 50% согласий."><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
 
 <header class="header" id="header"><div class="container header-inner">
   <a href="#" class="logo"><span class="logo-icon">🏰</span><div class="logo-text"><span class="logo-main">ТДТК</span><span class="logo-sub">Твой Дом — Твоя Крепость</span></div></a>
@@ -56,7 +48,7 @@
 <section class="application reveal" id="form"><div class="container">
   <h2>Оставить заявку</h2><p class="section-subtitle" style="color:#fff">Заполните форму, мы свяжемся с вами</p>
   <form class="app-form" id="appForm">
-    <div class="form-row"><div class="form-group"><label>Имя *</label><input type="text" id="f-name" required class="form-input" placeholder="Иван Иванов"></div><div class="form-group"><label>Телефон *</label><input type="tel" id="f-phone" required class="form-input" placeholder="+7 (___) ___-__-__"></div></div>
+    <div class="form-row"><div class="form-group"><label>Имя *</label><input type="text" id="f-name" required class="form-input" placeholder="Иван Иванов"></div><div class="form-group"><label>Телефон *</label><input type="tel" id="f-phone" required class="form-input" placeholder="+7 (___) ___-__-__" pattern="\+7\s\(\d{3}\)\s\d{3}-\d{2}-\d{2}" title="Формат: +7 (999) 123-45-67"><small style="color:var(--text-light);display:block;margin-top:4px">Пример: <strong>+7 (999) 123-45-67</strong></small></div></div>
     <div class="form-row"><div class="form-group"><label>Улица *</label><input type="text" id="f-street" required class="form-input" placeholder="ул. Ленина"></div><div class="form-group"><label>Дом *</label><input type="text" id="f-house" required class="form-input" placeholder="12"></div></div>
     <div class="form-row"><div class="form-group"><label>Подъезд *</label><input type="number" id="f-entrance" required min="1" class="form-input" placeholder="1"></div><div class="form-group"><label>Квартира *</label><input type="number" id="f-apt" required min="1" class="form-input" placeholder="15"></div></div>
     <div class="form-group"><label>Всего квартир в подъезде *</label><input type="number" id="f-total" required min="1" max="200" class="form-input" placeholder="36"></div>
@@ -85,8 +77,8 @@
 
 <footer class="footer"><div class="container footer-inner">
   <div class="footer-col"><a href="#" class="logo"><span class="logo-icon">🏰</span><div class="logo-text"><span class="logo-main">ТДТК</span><span class="logo-sub">Твой Дом — Твоя Крепость</span></div></a><p style="margin-top:12px">Установка домофонных систем для многоквартирных домов.</p></div>
-  <div class="footer-col"><h4>Контакты</h4><a href="tel:" class="phone-header" data-cms-phone>📞 +7 (000) 123-45-67</a><a href="mailto:" class="footer-email" data-cms-email>📧 info@тдтк.рф</a></div>
-  <div class="footer-col"><h4>Ссылки</h4><a href="#form">Заявка</a><a href="admin.html"> Админка</a></div>
-</div><div class="footer-bottom"><div class="container"><p>© 2026 ТДТК.РФ. Все права защищены.</p></div></div></footer>
+  <div class="footer-col"><h4>Контакты</h4><p data-cms="phone">📞 +7 (000) 123-45-67</p><p data-cms-email>📧 info@тдтк.рф</p></div>
+  <div class="footer-col"><h4>Ссылки</h4><a href="#form">Заявка</a><a href="admin.html">Админка</a></div>
+</div><div class="footer-bottom"><div class="container"><p data-cms="footer_text">© 2026 ТДТК.РФ. Все права защищены.</p></div></div></footer>
 
 <script src="config.js"></script><script src="app.js"></script></body></html>
