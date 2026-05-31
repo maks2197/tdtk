@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ТДТК.РФ — Твой Дом — Твоя Крепость</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="style.css"></head><body>
+
+<header class="header" id="header"><div class="container header-inner">
+  <a href="#" class="logo"><span class="logo-icon">🏰</span><div class="logo-text"><span class="logo-main">ТДТК</span><span class="logo-sub">Твой Дом — Твоя Крепость</span></div></a>
+  <nav class="nav"><a href="#services">Услуги</a><a href="#calculator">Калькулятор</a><a href="#how-it-works">Как работает</a><a href="#form">Заявка</a><a href="#progress">Прогресс</a></nav>
+  <a href="tel:" class="phone-header" data-cms-phone>📞 +7 (000) 123-45-67</a>
+  <button class="burger" id="burger" aria-label="Меню">☰</button>
+</div></header>
+<div class="menu-overlay" id="overlay"></div>
+<div class="mobile-menu" id="mobileMenu"><a href="#services">Услуги</a><a href="#calculator">Калькулятор</a><a href="#how-it-works">Как работает</a><a href="#form">Заявка</a><a href="#progress">Прогресс</a><a href="tel:" style="color:var(--primary);margin-top:16px" data-cms-phone>📞 +7 (000) 123-45-67</a></div>
+
+<section class="hero"><div class="container hero-inner">
+  <div><h1 data-cms="hero_title">Домофон для вашего подъезда</h1><p class="hero-subtitle">Коллективная установка систем контроля доступа. Договор при согласии <strong>более 50% квартир</strong>.</p><div class="hero-price"><span class="price-tag">от <strong data-cms="price_min">35 000</strong> ₽</span><span class="price-note">или от <strong>200 ₽/мес</strong> с квартиры</span></div><a href="#form" class="btn btn-primary">Оставить заявку →</a></div>
+  <div class="hero-stats"><div class="stat-card reveal"><span class="stat-num">500+</span><span class="stat-label">Подъездов</span></div><div class="stat-card reveal"><span class="stat-num">50%</span><span class="stat-label">Минимум согласий</span></div><div class="stat-card reveal"><span class="stat-num">70k ₽</span><span class="stat-label">Средняя цена</span></div></div>
+</div></section>
+
+<section class="benefits reveal" id="services"><div class="container">
+  <h2>Почему выбирают нас</h2>
+  <div class="benefits-grid">
+    <div class="benefit-card reveal"><div class="benefit-icon">🛡️</div><h3>Безопасность</h3><p>Только ваши соседи и гости могут войти.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">💰</div><h3>Выгодно</h3><p>Коллективная установка снижает стоимость в 3-5 раз.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">📱</div><h3>Технологии</h3><p>Приложение, RFID-ключи, видеодомофоны.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">🔧</div><h3>Гарантия</h3><p>2 года. Техподдержка и ремонт.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">📋</div><h3>Прозрачность</h3><p>Отслеживайте прогресс согласий онлайн.</p></div>
+    <div class="benefit-card reveal"><div class="benefit-icon">⚡</div><h3>Быстро</h3><p>Монтаж за 1-2 дня после 50% согласий.</p></div>
+  </div>
+</div></section>
+
+<section class="calculator reveal" id="calculator"><div class="container">
+  <h2>Калькулятор стоимости</h2><p class="section-subtitle">Рассчитайте стоимость для вашего подъезда</p>
+  <div class="calc-wrapper"><div class="calc-form">
+    <div class="form-group"><label>Квартир в подъезде</label><input type="number" id="calc-entrance" min="1" max="200" value="36" class="form-input"></div>
+    <div class="form-group checkbox-group"><label><input type="checkbox" id="calc-sub" checked> С абонентской платой <strong>200 ₽/мес</strong></label></div>
+    <div class="calc-result">
+      <div class="result-row"><span>Оборудование и монтаж:</span><strong id="calc-total">70 000 ₽</strong></div>
+      <div class="result-row highlight"><span>На 1 квартиру:</span><strong id="calc-per-apt" class="price-green">1 944 ₽</strong></div>
+      <div class="result-row" id="calc-monthly-row"><span>Абонентская плата:</span><strong id="calc-monthly">200 ₽/мес</strong></div>
+      <div class="result-row note"><span id="calc-note">При подписке установка дешевле на 50%</span></div>
+    </div>
+  </div></div>
+</div></section>
+
+<section class="how-it-works reveal" id="how-it-works"><div class="container">
+  <h2>Как это работает</h2>
+  <div class="steps"><div class="step reveal"><div class="step-num">1</div><h3>Заявка</h3><p>Укажите адрес, подъезд, квартиру.</p></div><div class="step reveal"><div class="step-num">2</div><h3>Сбор</h3><p>Соседи оставляют заявки, растёт прогресс.</p></div><div class="step reveal"><div class="step-num">3</div><h3>50%+</h3><p>Достигнут лимит — заключаем договор.</p></div><div class="step reveal"><div class="step-num">4</div><h3>Монтаж</h3><p>Установка за 1-2 дня. Выдача ключей.</p></div></div>
+</div></section>
+
+<section class="application reveal" id="form"><div class="container">
+  <h2>Оставить заявку</h2><p class="section-subtitle" style="color:#fff">Заполните форму, мы свяжемся с вами</p>
+  <form class="app-form" id="appForm">
+    <div class="form-row"><div class="form-group"><label>Имя *</label><input type="text" id="f-name" required class="form-input" placeholder="Иван Иванов"></div><div class="form-group"><label>Телефон *</label><input type="tel" id="f-phone" required class="form-input" placeholder="+7 (___) ___-__-__"></div></div>
+    <div class="form-row"><div class="form-group"><label>Улица *</label><input type="text" id="f-street" required class="form-input" placeholder="ул. Ленина"></div><div class="form-group"><label>Дом *</label><input type="text" id="f-house" required class="form-input" placeholder="12"></div></div>
+    <div class="form-row"><div class="form-group"><label>Подъезд *</label><input type="number" id="f-entrance" required min="1" class="form-input" placeholder="1"></div><div class="form-group"><label>Квартира *</label><input type="number" id="f-apt" required min="1" class="form-input" placeholder="15"></div></div>
+    <div class="form-group"><label>Всего квартир в подъезде *</label><input type="number" id="f-total" required min="1" max="200" class="form-input" placeholder="36"></div>
+    <div class="form-group checkbox-group"><label><input type="checkbox" id="f-sub" checked> Согласен на абон. плату <strong>200 ₽/мес</strong></label></div>
+    <div class="form-group"><label>Комментарий</label><textarea id="f-comment" class="form-input" placeholder="Доп. информация..."></textarea></div>
+    <button type="submit" class="btn btn-primary" id="f-btn" style="width:100%">Отправить заявку</button>
+    <p class="form-success" id="f-ok">✅ Заявка принята! Мы свяжемся с вами.</p>
+    <p class="form-error" id="f-err">❌ Ошибка. Попробуйте позже.</p>
+  </form>
+</div></section>
+
+<section class="progress-section reveal" id="progress"><div class="container">
+  <h2>Прогресс по подъездам</h2><p class="section-subtitle">Отслеживайте согласие соседей</p>
+  <div class="progress-controls"><input type="text" id="prog-search" placeholder="Поиск по адресу..." class="form-input"></div>
+  <div class="progress-grid" id="prog-grid"><div class="loading">⏳ Загрузка...</div></div>
+  <div class="legend"><span>🟢 ≥50%</span><span>🟡 25-49%</span><span>🔴 <25%</span></div>
+</div></section>
+
+<section class="pricing reveal"><div class="container">
+  <h2>Тарифы</h2>
+  <div class="pricing-grid">
+    <div class="price-card reveal"><h3>🔑 Без абон. платы</h3><div class="price-big" data-cms="base_price">~70 000 ₽</div><p class="price-desc">Единоразовая оплата за всё</p><ul class="price-features"><li>Оборудование и монтаж</li><li>Ключи на всех</li><li>Гарантия 2 года</li><li class="feat-no">Без ежемесячной платы</li></ul><a href="#form" class="btn btn-outline" style="color:var(--primary);border-color:var(--primary)">Оставить заявку</a></div>
+    <div class="price-card featured reveal"><div class="badge">Популярный</div><h3>📱 С абон. платой</h3><div class="price-big" data-cms="sub_price">~35 000 ₽</div><p class="price-desc">Сниженная цена установки + подписка</p><ul class="price-features"><li>Оборудование и монтаж</li><li>Ключи на всех</li><li>Приложение для смартфона</li><li class="feat-yes"><strong data-cms="monthly_fee">200 ₽/мес</strong> с квартиры</li></ul><a href="#form" class="btn btn-primary">Оставить заявку</a></div>
+  </div>
+</div></section>
+
+<footer class="footer"><div class="container footer-inner">
+  <div class="footer-col"><a href="#" class="logo"><span class="logo-icon">🏰</span><div class="logo-text"><span class="logo-main">ТДТК</span><span class="logo-sub">Твой Дом — Твоя Крепость</span></div></a><p style="margin-top:12px">Установка домофонных систем для многоквартирных домов.</p></div>
+  <div class="footer-col"><h4>Контакты</h4><p data-cms="phone">📞 +7 (000) 123-45-67</p><p>📧 info@тдтк.рф</p></div>
+  <div class="footer-col"><h4>Ссылки</h4><a href="#form">Заявка</a><a href="admin.html">Админка</a></div>
+</div><div class="footer-bottom"><div class="container"><p>© 2026 ТДТК.РФ. Все права защищены.</p></div></div></footer>
+
+<script src="config.js"></script><script src="app.js"></script></body></html>
