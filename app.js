@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', () => {
     stats: [{ address: 'ул. Ленина, д.12, п.1', total: 36, agreed: 20, percent: 56, canInstall: true }],
     cms: {
       hero_title: 'Домофон для вашего подъезда',
-      price_min: '35000',
-      phone: '+7 (999) 123-45-67',
+      price_min: '65000',
+      phone: '+7 (914) 757-78-97',
       email: 'info@тдтк.рф',
       base_price: '70000',
-      sub_price: '35000',
+      sub_price: '65000',
       monthly_fee: '200',
-      meta_desc: 'Коллективная установка домофонов. Договор при 50% согласий.',
+      meta_desc: 'Коллективная установка домофонов. Договор при 51% согласий.',
       meta_title: 'ТДТК — Установка домофонов',
       og_title: 'ТДТК — Твой Дом — Твоя Крепость'
     }
