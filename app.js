@@ -170,10 +170,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
       if (cms.phone) {
-        document.querySelectorAll('[data-cms-phone]').forEach(a => {
-          a.href = `tel:${PhoneValidator.getRaw(cms.phone)}`;
-          a.textContent = `📞 ${cms.phone}`;
-        });
+        const phoneStr = typeof cms.phone === 'object' && cms.phone !== null 
+          ? String(cms.phone.value) 
+          : String(cms.phone);
+          
+        if (phoneStr && phoneStr !== 'undefined' && phoneStr !== 'null') {
+          document.querySelectorAll('[data-cms-phone]').forEach(a => {
+            a.href = `tel:${PhoneValidator.getRaw(phoneStr)}`;
+            a.textContent = `📞 ${PhoneValidator.format(phoneStr)}`; // Показываем красиво, сохраняем сырой для href
+          });
+        }
       }
       if (cms.email) {
         document.querySelectorAll('[data-cms-email]').forEach(a => {
