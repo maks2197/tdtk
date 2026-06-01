@@ -21,14 +21,17 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // === ВАЛИДАТОР ТЕЛЕФОНА ===
+    // === ВАЛИДАТОР ТЕЛЕФОНА (ИСПРАВЛЕННЫЙ) ===
   const PhoneValidator = {
-    clean: (val) => (val||'').replace(/[^\d+]/g, ''),
+    clean: (val) => String(val || '').replace(/\D/g, ''), // Только цифры
+    
     format: (val) => {
       let v = PhoneValidator.clean(val);
       if (!v) return '';
       if (v.startsWith('8')) v = '7' + v.slice(1);
-      if (!v.startsWith('7') && !v.startsWith('+')) v = '7' + v;
-      v = v.replace('+', '').slice(0, 11);
+      if (v.length > 11) v = v.slice(0, 11);
+      if (!v.startsWith('7') && v.length > 0) v = '7' + v;
+      
       let f = '+7';
       if (v.length > 1) f += ` (${v.slice(1, 4)}`;
       if (v.length >= 4) f += `) ${v.slice(4, 7)}`;
@@ -36,13 +39,20 @@ document.addEventListener('DOMContentLoaded', () => {
       if (v.length >= 9) f += `-${v.slice(9, 11)}`;
       return f;
     },
+    
     isValid: (val) => {
-      const digits = PhoneValidator.clean(val).replace(/^7/, '').replace(/^\+7/, '');
-      return digits.length === 10 && /^\d+$/.test(digits);
+      const digits = PhoneValidator.clean(val);
+      if (digits.startsWith('8')) return digits.length === 11;
+      if (digits.startsWith('7')) return digits.length === 11;
+      return digits.length === 10;
     },
+    
     getRaw: (val) => {
-      const cleaned = PhoneValidator.clean(val);
-      return cleaned.startsWith('7') ? cleaned : '7' + cleaned.replace('+', '');
+      let v = PhoneValidator.clean(val); // Оставляем только цифры
+      if (v.startsWith('8')) v = '7' + v.slice(1);
+      if (v.length > 11) v = v.slice(0, 11);
+      if (!v.startsWith('7') && v.length > 0) v = '7' + v;
+      return v; // Всегда возвращает ровно 11 цифр, начинающихся с 7
     }
   };
 
