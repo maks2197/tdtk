@@ -1,6 +1,6 @@
 // Конфигурация
 const API_URL = 'https://script.google.com/macros/s/AKfycbynKHpCuTZXIiVd-NQzfc_GSa8N899fSdelP__2mH8RXJOk-xOKY5aUEpPvtjevM_qR/exec'; // ЗАМЕНИТЕ НА ВАШ URL!
-let currentPassword = 'admin_guest2026';
+let currentPassword = '';
 
 // DOM элементы
 const loginScreen = document.getElementById('loginScreen');
